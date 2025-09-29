@@ -1744,6 +1744,12 @@ class RoomClient {
 
         console.log(`Media constraints ${type}:`, mediaConstraints);
 
+        if (peer_background) {
+            // Concatenetion is essential here or Media API will complain
+            // that this variable is not local one
+            virtualBackgroundSelectedImage = '' + peer_background;
+        }
+
         try {
             if (init) {
                 stream = initStream;

@@ -21,6 +21,7 @@ $data = array(
     "roomPassword"  => false,
     "name"          => "mirotalksfu",
     "avatar"        => false,
+    "background"    => false,
     "audio"         => false,
     "video"         => false,
     "screen"        => false,

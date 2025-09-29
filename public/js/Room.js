@@ -239,6 +239,7 @@ let room_password = getRoomPassword();
 let room_duration = getRoomDuration();
 let peer_name = getPeerName();
 let peer_avatar = getPeerAvatar();
+let peer_background = getPeerVirtualBackgroundImageUrl();
 let peer_uuid = getPeerUUID();
 let peer_token = getPeerToken();
 let isScreenAllowed = getScreen();
@@ -931,6 +932,16 @@ function getPeerAvatar() {
         return false;
     }
     return avatar;
+}
+
+function getPeerVirtualBackgroundImageUrl() {
+    const background = getQueryParam('background');
+    const backgroundUndefined = background === '0' || background === 'false';
+    console.log('Direct join', { background: background });
+    if (backgroundUndefined || !isImageURL(background)) {
+        return false;
+    }
+    return background;
 }
 
 function getPeerUUID() {
@@ -5586,9 +5597,14 @@ async function loadVirtualBackgroundSettings() {
 
     const savedSettings = localStorage.getItem('virtualBackgroundSettings');
 
-    if (!savedSettings) return;
+    let { blurLevel, imageUrl, transparent } = savedSettings 
+        ? JSON.parse(savedSettings)
+        : {}
 
-    const { blurLevel, imageUrl, transparent } = JSON.parse(savedSettings);
+    if (peer_background) {
+        blurLevel = null;
+        imageUrl = peer_background;
+    }
 
     if (blurLevel) {
         await applyVirtualBackground(initVideo, initStream, blurLevel);

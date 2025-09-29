@@ -165,6 +165,9 @@ definitions:
             avatar:
                 type: ['boolean', 'string'] # Allow boolean or string type
                 default: false
+            background:
+                type: ['boolean', 'string'] # Allow boolean or string type
+                default: false
             audio:
                 type: boolean
                 default: false

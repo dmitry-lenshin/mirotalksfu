@@ -124,6 +124,7 @@ This project is proudly sponsored by
     | room         | string         | Room Id                   |
     | roomPassword | string/boolean | Room password             |
     | name         | string         | User name                 |
+    | backgroud    | string         | Virtual background image  |
     | avatar       | string/boolean | User avatar               |
     | audio        | boolean        | Audio stream              |
     | video        | boolean        | Video stream              |
