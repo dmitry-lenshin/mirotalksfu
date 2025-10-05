@@ -216,6 +216,11 @@
     color: #66beff !important;
 }
 
+.peer-video-container {
+    display: flex;
+    max-width: 100%;
+}
+
 .expand-video .dropdown-button {
     cursor: pointer;
     position: relative;

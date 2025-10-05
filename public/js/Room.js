@@ -1558,6 +1558,7 @@ function joinRoom(peer_name, room_id) {
         roomId.innerText = room_id;
         userName.innerText = peer_name;
         isUserPresenter.innerText = isPresenter;
+
         rc = new RoomClient(
             localAudio,
             remoteAudios,

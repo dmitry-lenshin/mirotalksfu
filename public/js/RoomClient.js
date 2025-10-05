@@ -2656,7 +2656,7 @@ class RoomClient {
                     if (vb && !vb.classList.contains('hidden')) {
                         hide(vb);
                         setCamerasBorderNone();
-                    }
+                    };
                 };
 
                 if (this.isMobileDevice) {
@@ -2669,7 +2669,7 @@ class RoomClient {
                 }
                 vb.addEventListener('click', (e) => e.stopPropagation());
 
-                this.videoMediaContainer.appendChild(d);
+                this.getPeerVideoContainer(this.peer_id).appendChild(d);
 
                 await this.attachMediaStream(elem, stream, type, 'Producer');
 
@@ -3442,7 +3442,7 @@ class RoomClient {
         }
         vb.addEventListener('click', (e) => e.stopPropagation());
 
-        this.videoMediaContainer.appendChild(d);
+        this.getPeerVideoContainer(peer_id).appendChild(d);
         BUTTONS.videoOff.muteAudioButton && this.handleAU(au.id);
 
         if (remotePeer) {
@@ -3703,6 +3703,20 @@ class RoomClient {
                 if (speakerSel) speakerSel.selectedIndex = 0;
                 refreshLsDevices();
             });
+    }
+
+    getPeerVideoContainer(peer_id) {
+        let peerContainer = document.querySelector(`div.peer-video-container[data-peer-id="${peer_id}"]`);
+        console.log('peerContainer', peerContainer, peer_id)
+        if (!peerContainer) {
+            peerContainer = document.createElement('div');
+            peerContainer.classList.add('peer-video-container');
+            peerContainer.dataset.peerId = peer_id;
+            this.videoMediaContainer.appendChild(peerContainer);
+        }
+
+        return peerContainer;
+        return this.videoMediaContainer;
     }
 
     event(evt) {
